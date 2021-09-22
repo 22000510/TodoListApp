@@ -1,0 +1,10 @@
+project##todolist##2021/09/22 20:07:33/n
+update##edit list##2021/09/22 20:08:26/n
+del##delete list##2021/09/22 20:09:31/n
+list_asc##list order##2021/09/22 20:12:28/n
+list_desc##list order##2021/09/22 20:12:46/n
+test##discrete mathmathic##2021/09/22 20:12:57/n
+planner##todolist##2021/09/22 20:13:19/n
+homework##math, java coding##2021/09/22 20:13:49/n
+seoul##my hometown##2021/09/22 20:14:21/n
+handong##my school##2021/09/22 20:15:04/n

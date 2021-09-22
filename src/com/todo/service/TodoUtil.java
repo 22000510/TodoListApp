@@ -1,5 +1,6 @@
 package com.todo.service;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -91,18 +92,53 @@ public class TodoUtil {
 	
 	public static void saveList(TodoList l, String filename) {
 		try {
-			FileWriter fw = new FileWriter(filename);
+			FileWriter fw = new FileWriter( "todolist.txt" ,true);
+            BufferedWriter writer = new BufferedWriter( fw );
+			for (TodoItem item : l.getList()) {
+				System.out.print(item.toSaveString());
+				 
+				writer.write(item.toSaveString());
+				writer.newLine();
+				writer.flush();
+			}
 			
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
 	}
 	
-	public static void loadList(TodoList l, String filename) {
+	public static void loadList(TodoList l, String filename){
 		try {
-			FileReader fr = new FileReader(filename);
-			if(fr == null) {
-				System.out.print("내용이 없습니다.");
+			FileReader reader = new FileReader(filename);
+			int ch;
+			String data = "";
+			String title;
+			String desc, date;
+			
+			try {
+				if ((ch = reader.read()) == -1) {
+				System.out.println("내용이 없습니다.");
+				}
+				else {
+					System.out.print("로딩이 완료되었습니다.");
+					while ((ch = reader.read()) != -1) {	
+						data = data + (char)ch;
+					}
+					String[] total = data.split("\n");
+					int len = total.length;
+					for(int i = 0;i<len;i++) {
+						String[] line= total[i].split("##");
+						title = line[0];
+						desc = line[1];
+						TodoItem t = new TodoItem(title, desc);
+						l.addItem(t);
+				}
+				}
+				
+				
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
 			}
 		
 		} catch (FileNotFoundException e) {
