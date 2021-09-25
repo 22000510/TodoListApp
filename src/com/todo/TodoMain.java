@@ -66,8 +66,14 @@ public class TodoMain {
 				break;
 
 			default:
+				if(choice.equals("find")) {
+					String word = sc.next();
+				    TodoUtil.findItem(l, word);
+				}
+				else {
 				System.out.println("정확한 명령어를 입력하세요. (도움말 - help)");
 				break;
+				}
 			}
 			
 			if(isList) TodoUtil.listAll(l);
